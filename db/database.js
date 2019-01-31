@@ -4,7 +4,7 @@
 
 const Sequelize = require('sequelize');
 
-const db = new Sequelize('postgres://localhost:3000/archive', {
+const db = new Sequelize('postgres://localhost/archive', {
   logging: false
 });
 
