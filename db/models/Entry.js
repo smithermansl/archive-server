@@ -27,6 +27,6 @@ const Entry = db.define('entries', {
     type: SEquelize.BOOLEAN,
     defaultValue: false
   }
-})
+});
 
 module.exports = Entry;
