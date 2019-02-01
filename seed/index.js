@@ -4,7 +4,7 @@ const categories = require('./categoryContent');
 const entries = require('./entryContent');
 const guests = require('./guestContent');
 const neighborhoods = require('./neighborhoodContent');
-const seedJoins = require('./seedJoins');
+const seedJoinTables = require('./seedJoinTables');
 
 const seed = async () => {
   await Promise.all(categories.map(category => Category.create(category)));
@@ -24,7 +24,7 @@ const main = () => {
     .catch(err => console.log('Error seeding db tables.', err.message))
     .then(() => {
       console.log('Seeding join tables.');
-      return seedJoins();
+      return seedJoinTables();
     })
     .catch(err => console.log('Error seeding join tables.', err.message))
     .then(() => {
