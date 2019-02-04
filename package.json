@@ -1,7 +1,7 @@
 {
-  "name": "server",
+  "name": "archive-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "RESTful API for Archive native app.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
     "seed": "node seed/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Shelby Smitherman",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -21,5 +21,8 @@
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
+  },
+  "engines": {
+    "node": "8.x"
   }
 }
