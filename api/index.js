@@ -2,7 +2,8 @@
 
 const router = require('express').Router();
 
-router.use('/entry', require('./entryRoutes'));
-router.use('/guest', require('./guestRoutes'));
+router.use('/entries', require('./entryRoutes'));
+router.use('/guests', require('./guestRoutes'));
+router.use('/users', require('./userRoutes'));
 
 module.exports = router;
