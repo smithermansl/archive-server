@@ -14,7 +14,7 @@ router.get('/:id', async (req, res, next) => {
     });
 
     res.status(200).json(guest);
-  } catch (err) {
+  } catch(err) {
     next(err);
   }
 })
@@ -26,7 +26,7 @@ router.post('/', async (req, res, next) => {
     const newGuest = await Guest.create({ firstName, lastName });
 
     res.status(201).json(newGuest);
-  } catch (err) {
+  } catch(err) {
     next(err);
   }
 })

@@ -1,6 +1,11 @@
-const { Category, Entry, Guest, Neighborhood } = require('../db');
+const { Category, Entry, Guest, Neighborhood, User } = require('../db');
 
 module.exports = async () => {
+  // getting users
+  const shelby = await User.findByPk(1);
+  const stev = await User.findByPk(2);
+  const test = await User.findByPk(3);
+
   // getting entries
   const superTaste = await Entry.findByPk(1);
   const leos = await Entry.findByPk(2);
@@ -23,6 +28,10 @@ module.exports = async () => {
   const fidi = await Neighborhood.findByPk(13);
   const chinatown = await Neighborhood.findByPk(15);
   const village = await Neighborhood.findByPk(22);
+
+  // set which entries belong to a user
+  await shelby.setEntries([leos, superTaste]);
+  await stev.setEntries([hanoi]);
 
   // set entry categories
   await superTaste.setCategories([chinese]);

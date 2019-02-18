@@ -1,31 +1,41 @@
 'use strict';
 
 const router = require('express').Router();
-const { Category, Entry, Guest } = require('../db');
+const { Category, Entry, Guest, Neighborhood } = require('../db');
 
-// get all entries (eager load categories)
-router.get('/', async (req, res, next) => {
+// TODO
+// possibly don't need (I can filter on front end by entry ID)
+
+// get a single entry (eager loads its categories, guests, neighborhood)
+router.get('/:entryId', async (req, res, next) => {
   try {
-    const allEntries = await Entry.findAll();
+    const { entryId } = req.params;
+    const entry = await Entry.findByPk(entryId, {
+      include: [ Category, Guest, Neighborhood ]
+    });
 
-    res.status(200).json(allEntries);
-  } catch (err) {
+    res.status(200).json(entry);
+  } catch(err) {
     next(err);
   }
 });
 
-// get a single entry (eager loads its categories and guests)
-router.get('/:id', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
+  // will need to get the neighborhood and categories as well
+  const { name, rating, price, notes, is_favorite } = req.body;
   try {
-    const { id } = req.params;
-    const entry = await Entry.findByPk(id, {
-      include: [ Category, Guest ]
+    const newEntry = await Entry.create({
+      name,
+      rating,
+      price,
+      notes,
+      is_favorite
     });
 
-    res.status(200).json(entry);
-  } catch (err) {
+    res.status(201).json(newEntry);
+  } catch(err) {
     next(err);
   }
-})
+});
 
 module.exports = router;
