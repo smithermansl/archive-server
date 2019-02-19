@@ -3,6 +3,7 @@
 const router = require('express').Router();
 const { Category, Entry, Guest, Neighborhood, User } = require('../db');
 
+// get all entries for a specific user
 router.get('/:userId/entries', async (req, res, next) => {
   const { userId } = req.params;
   try {
@@ -17,17 +18,18 @@ router.get('/:userId/entries', async (req, res, next) => {
   }
 });
 
+// get all guests for a specific user
 router.get('/:userId/guests', async (req, res, next) => {
   const { userId } = req.params;
   try {
     const guests = await Guest.findAll({
       where: { userId }
-    })
+    });
 
     res.status(200).json(guests);
   } catch(err) {
     next(err);
   }
-})
+});
 
 module.exports = router;
