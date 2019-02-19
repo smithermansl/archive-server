@@ -63,7 +63,7 @@ module.exports = [
     name: 'Lenox Hill' // 21
   },
   {
-    name: 'East Villiage' // 22
+    name: 'East Village' // 22
   },
   {
     name: 'Alphabet City' // 23

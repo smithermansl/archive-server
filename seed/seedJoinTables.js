@@ -11,6 +11,7 @@ module.exports = async () => {
   const leos = await Entry.findByPk(2);
   const hanoi = await Entry.findByPk(3);
   const cheers = await Entry.findByPk(4);
+  const jacobs = await Entry.findByPk(5);
 
   // getting categories
   const vietnamese = await Category.findByPk(1);
@@ -18,6 +19,7 @@ module.exports = async () => {
   const breakfast = await Category.findByPk(35);
   const bagels = await Category.findByPk(36);
   const thai = await Category.findByPk(26);
+  const southern = await Category.findByPk(14);
 
   // getting guests
   const peggy = await Guest.findByPk(1);
@@ -31,10 +33,11 @@ module.exports = async () => {
   const chinatown = await Neighborhood.findByPk(15);
   const village = await Neighborhood.findByPk(22);
   const williamsburg = await Neighborhood.findByPk(24);
+  const upperwest = await Neighborhood.findByPk(10);
 
   // set which entries belong to a user
   await shelby.setEntries([leos, superTaste]);
-  await stev.setEntries([hanoi]);
+  await stev.setEntries([hanoi, jacobs]);
   await test.setEntries([cheers]);
 
   // set entry categories
@@ -42,16 +45,19 @@ module.exports = async () => {
   await leos.setCategories([bagels, breakfast]);
   await hanoi.setCategories([vietnamese]);
   await cheers.setCategories([thai]);
+  await jacobs.setCategories([southern, breakfast]);
 
   // set entry guests
   await superTaste.setGuests([ash, atom, ry]);
   await leos.setGuests([mom, peggy]);
   await hanoi.setGuests([ry, peggy, ash]);
   await cheers.setGuests([atom, ry]);
+  await jacobs.setGuests([ash]);
 
   // set entry neighborhood
   await superTaste.setNeighborhood(chinatown);
   await hanoi.setNeighborhood(village);
   await leos.setNeighborhood(fidi);
   await cheers.setNeighborhood(williamsburg);
+  await jacobs.setNeighborhood(upperwest);
 };
