@@ -1,32 +1,16 @@
 'use strict';
 
 const router = require('express').Router();
-const { Category, Entry, Guest, Neighborhood, User } = require('../db');
+const { User } = require('../db');
 
-// get all entries for a specific user
-router.get('/:userId/entries', async (req, res, next) => {
-  const { userId } = req.params;
+router.use('/:userId/entries', require('./entryRoutes'));
+router.use('/:userId/guests', require('./guestRoutes'));
+
+// get all users (admin purposes)
+router.get('/', async (req, res, next) => {
   try {
-    const entries = await Entry.findAll({
-      where: { userId },
-      include: [ Category, Guest, Neighborhood ]
-    });
-
-    res.status(200).json(entries);
-  } catch(err) {
-    next(err);
-  }
-});
-
-// get all guests for a specific user
-router.get('/:userId/guests', async (req, res, next) => {
-  const { userId } = req.params;
-  try {
-    const guests = await Guest.findAll({
-      where: { userId }
-    });
-
-    res.status(200).json(guests);
+    const users = await User.findAll();
+    res.status(200).json(users);
   } catch(err) {
     next(err);
   }

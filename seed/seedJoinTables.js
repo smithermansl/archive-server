@@ -47,6 +47,11 @@ module.exports = async () => {
   await cheers.setCategories([thai]);
   await jacobs.setCategories([southern, breakfast]);
 
+  // set user guests
+  await shelby.setGuests([mom]);
+  await stev.setGuests([ash, peggy, atom]);
+  await test.setGuests([ry]);
+
   // set entry guests
   await superTaste.setGuests([ash, atom, ry]);
   await leos.setGuests([mom, peggy]);
