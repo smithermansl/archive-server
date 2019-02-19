@@ -67,5 +67,8 @@ module.exports = [
   },
   {
     name: 'Alphabet City' // 23
+  },
+  {
+    name: 'Williamsburg' // 24
   }
 ];

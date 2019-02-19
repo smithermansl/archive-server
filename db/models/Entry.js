@@ -7,14 +7,14 @@ const Entry = db.define('entries', {
     allowNull: false
   },
   rating: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.SMALLINT,
     validate: {
       min: 0,
       max: 5
     }
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.SMALLINT,
     validate: {
       min: 1,
       max: 5
@@ -26,6 +26,18 @@ const Entry = db.define('entries', {
   is_favorite: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  lat: {
+    type: Sequelize.DECIMAL,
+    validate: {
+      isDecimal: true
+    }
+  },
+  long : {
+    type: Sequelize.DECIMAL,
+    validate: {
+      isDecimal: true
+    }
   }
 });
 
