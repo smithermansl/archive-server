@@ -38,6 +38,9 @@ const Entry = db.define('entries', {
     validate: {
       isDecimal: true
     }
+  },
+  address: {
+    type: Sequelize.STRING
   }
 });
 
