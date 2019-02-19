@@ -3,13 +3,22 @@
 const router = require('express').Router({ mergeParams: true });
 const { Category, Entry, Guest, Neighborhood, User } = require('../db');
 
-// get all entries for a specific user
+// get all entries for a specific user, eager loads categories/neighborhood
 router.get('/', async (req, res, next) => {
   try {
     const { userId } = req.params;
     const entries = await Entry.findAll({
       where: { userId },
-      include: [ Category, Guest, Neighborhood ]
+      attributes: ['id', 'name', 'rating', 'price', 'notes', 'is_favorite'],
+      include: [{
+        model: Category,
+        attributes: ['id', 'name'],
+        through: { attributes: [] }
+      },
+      {
+        model: Neighborhood,
+        attributes: ['id', 'name']
+      }]
     });
 
     res.status(200).json(entries);

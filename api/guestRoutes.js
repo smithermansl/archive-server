@@ -8,7 +8,8 @@ router.get('/', async (req, res, next) => {
   try {
     const { userId } = req.params;
     const guests = await Guest.findAll({
-      where: { userId }
+      where: { userId },
+      attributes: ['id', 'firstName', 'lastName']
     });
 
     res.status(200).json(guests);
@@ -47,8 +48,9 @@ router.post('/', async (req, res, next) => {
     const { userId } = req.params;
     const { firstName, lastName } = req.body;
     const newGuest = await Guest.create({ firstName, lastName });
+
     const user = await User.findByPk(userId);
-    user.setGuest(newGuest);
+    newGuest.setUser(user);
 
     res.status(201).json(newGuest);
   } catch(err) {

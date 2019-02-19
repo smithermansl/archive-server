@@ -19,7 +19,7 @@ module.exports = async () => {
   const breakfast = await Category.findByPk(35);
   const bagels = await Category.findByPk(36);
   const thai = await Category.findByPk(26);
-  const southern = await Category.findByPk(14);
+  const southern = await Category.findByPk(12);
 
   // getting guests
   const peggy = await Guest.findByPk(1);
